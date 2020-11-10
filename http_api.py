@@ -70,7 +70,7 @@ def download(hash):
         return 'File not found'
 
 
-# File download function
+# File delete function
 @app.route('/delete/<hash>', methods=['DELETE'])
 def delete(hash):
     # Search for a file by hash
