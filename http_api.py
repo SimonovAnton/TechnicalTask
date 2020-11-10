@@ -74,15 +74,15 @@ def download(hash):
 @app.route('/delete/<hash>', methods=['DELETE'])
 def delete(hash):
     # Search for a file by hash
-    path = os.path.join(os.path.join(app.config['UPLOAD_STORE'], hash[0:2]))
-    file_name = glob(os.path.join(path, hash + '.*'))[0]
+    path = os.path.join(os.path.join(app.config['UPLOAD_STORE'], hash[0:2])) 
     try:
         # Deleting a file
+        file_name = glob(os.path.join(path, hash + '.*'))[0]
         os.remove(os.path.join(path, file_name))
         # Removing an empty subdirectory
         if not os.listdir(path):
             os.rmdir(path)
-    except FileNotFoundError:
+    except IndexError:
         return 'File not found'
     return 'File deleted'
 
